@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!--
+  Template base para páginas de produto.
+  Ao copiar para produtos/nome-do-produto.html:
+  - Troque href="./" por href="../" no logo e em "Voltar ao catálogo"
+  - Troque href="css/style.css" por href="../css/style.css"
+  - Substitua VIDEO_ID, textos, link do WhatsApp e dados do rodapé
+-->
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nome do Produto — Nome da Empresa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="page">
+    <!-- 1. Cabeçalho: logotipo + nome do produto -->
+    <header class="site-header">
+      <a class="site-logo" href="./">
+        <span aria-hidden="true">Nome da Empresa</span>
+      </a>
+      <h1 class="product-name">Nome do Produto</h1>
+      <a class="back-link" href="./">← Voltar ao catálogo</a>
+    </header>
+
+    <main class="main-content">
+      <!-- 2. Player de vídeo YouTube (16:9, responsivo, youtube-nocookie.com) -->
+      <div class="video-wrap">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+          title="Vídeo do produto"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <!-- 3. Descrição: título, texto e lista de características -->
+      <section class="product-description">
+        <h2 class="section-title">Sobre o produto</h2>
+        <p>
+          Texto de descrição do produto. Substitua por informações reais: aplicações,
+          benefícios e diferenciais. Mantenha parágrafos curtos para boa leitura em mobile.
+        </p>
+        <p>
+          Segundo parágrafo opcional com mais detalhes técnicos ou de uso.
+        </p>
+        <ul class="product-specs">
+          <li>Característica técnica 1</li>
+          <li>Característica técnica 2</li>
+          <li>Característica técnica 3</li>
+          <li>Característica técnica 4</li>
+        </ul>
+      </section>
+
+      <!-- 4. Chamada para ação -->
+      <div class="cta-block">
+        <a class="cta-button" href="https://wa.me/5511999999999">Solicitar Orçamento</a>
+      </div>
+    </main>
+
+    <!-- 5. Rodapé: empresa, telefone, site -->
+  </div>
+</body>
+</html>

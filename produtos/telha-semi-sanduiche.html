@@ -4,41 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Telha Semi-Sanduíche — Produtos</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
   <div class="page">
-    <header class="site-header">
-      <a class="site-logo" href="../">Produtos</a>
-      <a class="back-link" href="../">← Voltar ao catálogo</a>
-    </header>
+    <nav class="site-header" aria-label="Navegação">
+      <a href="../" class="site-logo" aria-label="Voltar para o site Mundial Telhas">
+        <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1691591533.3591-logo_principal-N-WU3zfs0K0VUhxyM6P9SOkoXaUgfwnu.webp" alt="Mundial Telhas Termoacusticas" class="site-logo-img" loading="lazy">
+      </a>
+    </nav>
     <main class="main-content">
-      <h1 class="product-title">Telha Semi-Sanduíche</h1>
-      <div class="video-wrap">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/VIDEO_ID"
+      <h1 class="product-name">Telha Semi-Sanduíche</h1>
+      <div class="video-wrap" id="video-wrap">
+        <video
+          id="product-video"
+          src="../videos/telha-semi-sanduiche.mp4"
+          controls
+          playsinline
+          autoplay
+          muted
+          preload="auto"
           title="Telha Semi-Sanduíche"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
-        ></iframe>
+        ></video>
+        <span class="video-sound-hint" id="sound-hint">Clique para ativar o som</span>
       </div>
-      <div class="product-description">
-        <p>Descrição do produto Telha Semi-Sanduíche. Substitua este texto pela descrição real e insira o ID do vídeo do YouTube no iframe acima (substitua VIDEO_ID pelo código após ?v= na URL do vídeo).</p>
+      <section class="product-description">
+        <h2 class="section-title">Sobre o produto</h2>
+        <p>A solução perfeita, com seu estilo trapezoidal ou ondulado e recheio colado. Essa telha oferece isolamento térmico e acústico de alta qualidade, trazendo um maior conforto para a sua obra.</p>
+        <p>A telha semi sanduíche é o melhor custo-benefício para sua construção. O EPS torna-se uma opção eficiente para o isolamento térmico da sua casa, impedindo a transferência de calor.</p>
         <ul class="product-specs">
-          <li>Característica técnica 1</li>
-          <li>Característica técnica 2</li>
-          <li>Característica técnica 3</li>
+          <li>Estilo trapezoidal ou ondulado com recheio colado</li>
+          <li>Isolamento térmico e acústico de alta qualidade</li>
+          <li>Melhor custo-benefício para a construção</li>
+          <li>EPS eficiente, impede a transferência de calor</li>
         </ul>
-      </div>
-      <div class="cta-block">
-        <a class="cta-button" href="#contato">Solicitar orçamento</a>
-      </div>
+      </section>
     </main>
-    <footer class="site-footer">
-      <p>Produtos · <a href="../">Catálogo</a></p>
-    </footer>
   </div>
+  <script>
+    (function () {
+      var video = document.getElementById('product-video');
+      var hint = document.getElementById('sound-hint');
+      if (!video || !hint) return;
+      function unmute() {
+        video.muted = false;
+        hint.classList.add('is-hidden');
+        document.removeEventListener('click', unmute);
+        document.removeEventListener('touchstart', unmute);
+      }
+      document.addEventListener('click', unmute, { once: true });
+      document.addEventListener('touchstart', unmute, { once: true });
+    })();
+  </script>
 </body>
 </html>

@@ -31,24 +31,28 @@ Em cada arquivo em `produtos/*.html`:
 
 ## Conectar ao GitHub
 
-Se o projeto ainda não estiver versionado:
+O repositório já está inicializado com o remote **origin** apontando para `https://github.com/tiojimbo/produtos.git`.
+
+Para enviar o código ao GitHub (na pasta do projeto):
 
 ```bash
-git init
-git add .
-git commit -m "Estrutura inicial: 6 páginas de produto + template base"
-git branch -M main
-git remote add origin https://github.com/tiojimbo/produtos.git
 git push -u origin main
 ```
 
-Se o repositório remoto já existir e tiver conteúdo:
+Se o repositório no GitHub já existir e estiver vazio, o push funciona direto. Se já houver commits no GitHub (por exemplo, um README criado na interface), faça antes:
 
 ```bash
-git remote add origin https://github.com/tiojimbo/produtos.git
-git fetch origin
-git branch -M main
+git pull origin main --allow-unrelated-histories
+# Resolva conflitos, se houver, depois:
 git push -u origin main
 ```
 
-Depois, no painel da Vercel, importe o projeto a partir do repositório **tiojimbo/produtos**.
+**Configurar identidade do Git** (se ainda não tiver feito):  
+Para que novos commits tenham seu nome e e-mail, configure uma vez:
+
+```bash
+git config --global user.email "seu@email.com"
+git config --global user.name "Seu Nome"
+```
+
+Depois, no painel da [Vercel](https://vercel.com), importe o projeto a partir do repositório **tiojimbo/produtos**.

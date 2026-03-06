@@ -1,237 +1,404 @@
-/* Template base — Páginas de Produto com QR Codes */
+/*
+  Template base — Páginas de Produto (QR Codes)
+  HTML + CSS puro, sem dependências externas.
+  Customize por produto via variáveis no :root ou no .page.
+*/
+
+/* ── Variáveis (customize por produto se necessário) ── */
 :root {
-  --bg: #0B0F1A;
-  --surface: #111827;
-  --surface2: #1a2235;
-  --border: #1e2d45;
-  --accent: #3B82F6;
-  --accent2: #60A5FA;
-  --accent-dim: rgba(59,130,246,0.12);
-  --text: #E2E8F0;
-  --text-muted: #64748B;
-  --text-dim: #94A3B8;
-  --rule: #1e2d45;
+  --branco: #ffffff;
+  --cinza-borda: #e5e5e5;
+  --color-white: #ffffff;
+  --color-primary: #063796;
+  --color-accent: #96bf43;
+  --color-text: #1a1a1a;
+  --color-text-muted: #4a4a4a;
+  --color-border: #e0e0e0;
+  --color-bg: #f8f8f8;
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --container-max: 720px;
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 3rem;
+  --radius: 8px;
+  --radius-btn: 6px;
 }
 
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.5;
+  color: var(--color-text);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
 }
 
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  background-size: 200px;
-  pointer-events: none;
-  opacity: 0.4;
+/* ── Layout da página ── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Layout */
-.page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
-
-/* Header */
+/* ── 1. Navbar fixa (como no componente) ── */
 .site-header {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  padding: 20px 24px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: var(--branco);
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  justify-content: center;
+  padding: 0 5%;
+  height: 56px;
+  border-bottom: 1px solid var(--cinza-borda);
+}
+
+@media (min-width: 640px) {
+  .site-header {
+    height: 64px;
+  }
 }
 
 .site-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--accent2);
   text-decoration: none;
-  display: inline-flex;
+  height: 100%;
+  display: flex;
   align-items: center;
-  gap: 8px;
 }
 
-.site-logo::before {
-  content: '';
-  width: 28px;
-  height: 28px;
-  background: var(--accent);
-  border-radius: 6px;
+.site-logo:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+.site-logo img,
+.site-logo-img {
+  display: block;
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+}
+
+@media (min-width: 640px) {
+  .site-logo img,
+  .site-logo-img {
+    height: 40px;
+  }
+}
+
+/* Compensar conteúdo abaixo da navbar fixa */
+.page {
+  padding-top: 56px;
+}
+
+@media (min-width: 640px) {
+  .page {
+    padding-top: 64px;
+  }
+}
+
+.product-name {
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-lg);
 }
 
 .back-link {
-  font-size: 14px;
-  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-semibold);
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  transition: color 0.2s;
 }
 
-.back-link:hover { color: var(--accent2); }
+.back-link:hover {
+  color: var(--color-white);
+  text-decoration: underline;
+}
 
-/* Conteúdo principal */
+.back-link:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ── Conteúdo principal ── */
 .main-content {
   flex: 1;
-  max-width: 800px;
-  margin: 0 auto;
   width: 100%;
-  padding: 48px 24px 64px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md) var(--space-2xl);
 }
 
-.product-title {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(28px, 4vw, 40px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: var(--text);
-  margin-bottom: 32px;
-}
-
-/* Vídeo responsivo */
+/* ── 2. Player de vídeo (16:9, responsivo) ── */
 .video-wrap {
   position: relative;
   width: 100%;
-  border-radius: 12px;
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius);
   overflow: hidden;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  margin-bottom: 40px;
+  background: var(--color-text-muted);
 }
 
 .video-wrap::before {
-  content: '';
+  content: "";
   display: block;
-  padding-top: 56.25%;
+  padding-top: 56.25%; /* 16:9 */
 }
 
-.video-wrap iframe {
+.video-wrap iframe,
+.video-wrap video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  border: 0;
 }
 
-/* Descrição */
+.video-wrap video {
+  object-fit: contain;
+}
+
+/* Aviso "clique para ativar o som" (some após primeiro clique) */
+.video-sound-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: var(--font-weight-semibold);
+  padding: 8px 14px;
+  border-radius: 6px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.video-sound-hint.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── 3. Descrição do produto ── */
 .product-description {
-  font-size: 16px;
-  color: var(--text-dim);
-  line-height: 1.75;
-  margin-bottom: 24px;
+  margin-bottom: var(--space-xl);
 }
 
-.product-description p { margin-bottom: 1em; }
-.product-description p:last-child { margin-bottom: 0; }
+.product-description .section-title {
+  font-weight: var(--font-weight-bold);
+  font-size: 1.25rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.product-description p {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+  line-height: 1.6;
+}
+
+.product-description p:last-of-type {
+  margin-bottom: var(--space-md);
+}
 
 .product-specs {
   list-style: none;
-  margin-top: 24px;
 }
 
 .product-specs li {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-  color: var(--text-dim);
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  padding: var(--space-xs) 0;
+  padding-left: 1.5rem;
+  position: relative;
+  border-bottom: 1px solid var(--color-border);
+  font-weight: var(--font-weight-semibold);
 }
 
-.product-specs li:last-child { border-bottom: none; }
+.product-specs li:last-child {
+  border-bottom: none;
+}
 
 .product-specs li::before {
-  content: '✓';
-  color: var(--accent2);
-  font-weight: 700;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
 }
 
-/* CTA */
+/* ── 4. Chamada para ação ── */
 .cta-block {
-  margin-top: 40px;
+  margin-top: var(--space-xl);
 }
 
 .cta-button {
   display: inline-block;
-  background: var(--accent);
-  color: white;
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: 15px;
-  padding: 14px 28px;
-  border-radius: 10px;
+  background: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-btn);
   text-decoration: none;
-  transition: background 0.2s, transform 0.15s;
+  transition: opacity 0.2s, transform 0.15s;
 }
 
 .cta-button:hover {
-  background: var(--accent2);
+  opacity: 0.95;
   transform: translateY(-1px);
 }
 
-/* Footer */
+.cta-button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ── 5. Rodapé ── */
 .site-footer {
-  background: var(--surface);
-  border-top: 1px solid var(--border);
-  padding: 24px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-lg) var(--space-md);
   text-align: center;
-  font-size: 13px;
-  color: var(--text-muted);
+  font-size: 0.875rem;
+  margin-top: auto;
+}
+
+.site-footer p {
+  margin-bottom: var(--space-xs);
+}
+
+.site-footer p:last-child {
+  margin-bottom: 0;
 }
 
 .site-footer a {
-  color: var(--accent2);
+  color: var(--color-accent);
+  font-weight: var(--font-weight-semibold);
   text-decoration: none;
 }
 
-.site-footer a:hover { text-decoration: underline; }
+.site-footer a:hover {
+  text-decoration: underline;
+}
 
-/* Homepage — listagem */
-.home .main-content { max-width: 640px; }
+.footer-company {
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-xs);
+}
+
+/* ── Homepage (listagem) ── */
+.home .main-content {
+  max-width: var(--container-max);
+}
+
+.home .product-title {
+  font-weight: var(--font-weight-bold);
+  font-size: clamp(1.5rem, 4vw, 1.75rem);
+  color: var(--color-primary);
+  margin-bottom: var(--space-md);
+}
+
+.home-intro {
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+}
 
 .products-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-sm);
 }
 
 .products-list a {
   display: block;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 24px;
-  color: var(--text);
+  background: var(--color-white);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md) var(--space-lg);
+  color: var(--color-primary);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 17px;
+  font-weight: var(--font-weight-bold);
+  font-size: 1rem;
   transition: border-color 0.2s, background 0.2s;
 }
 
 .products-list a:hover {
-  border-color: rgba(59,130,246,0.4);
-  background: var(--surface2);
+  border-color: var(--color-accent);
+  background: var(--color-bg);
 }
 
-.home .product-title { margin-bottom: 32px; }
-
-.home-intro {
-  color: var(--text-dim);
-  font-size: 16px;
-  margin-bottom: 40px;
+.products-list a:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
-@media (max-width: 600px) {
-  .site-header { padding: 16px; }
-  .main-content { padding: 32px 16px 48px; }
+/* ── Mobile-first: base 375px ── */
+@media (min-width: 480px) {
+  .site-header {
+    padding: var(--space-md) var(--space-lg);
+  }
+  .main-content {
+    padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+  }
+  .site-footer {
+    padding: var(--space-xl) var(--space-lg);
+  }
+}
+
+@media (min-width: 768px) {
+  .main-content {
+    padding: var(--space-2xl) var(--space-lg);
+  }
+  .product-description .section-title {
+    font-size: 1.375rem;
+  }
+  .product-description p {
+    font-size: 1.0625rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-max: 800px;
+  }
+}
+
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 840px;
+  }
+  .main-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
