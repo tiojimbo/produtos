@@ -450,16 +450,6 @@ body {
   text-overflow: ellipsis;
 }
 
-.product-card-category {
-  font-size: 0.8125rem;
-  color: var(--color-text-muted);
-  font-weight: var(--font-weight-normal);
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 /* ── Mobile-first: base 375px ── */
 @media (min-width: 480px) {
   .site-header {
