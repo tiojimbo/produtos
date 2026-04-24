@@ -452,17 +452,6 @@ body {
   text-overflow: ellipsis;
 }
 
-.product-card-chevron {
-  color: var(--color-text-muted);
-  flex-shrink: 0;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.product-card:hover .product-card-chevron {
-  color: var(--color-primary);
-  transform: translateY(2px);
-}
-
 /* ── Mobile-first: base 375px ── */
 @media (min-width: 480px) {
   .site-header {
