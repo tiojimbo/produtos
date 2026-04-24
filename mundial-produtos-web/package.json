@@ -1,0 +1,12 @@
+{
+  "name": "produtos",
+  "version": "1.0.0",
+  "description": "Páginas de produto com QR Codes — Mundial Telhas",
+  "private": true,
+  "scripts": {
+    "qrcodes": "node scripts/generate-qrcodes.js"
+  },
+  "devDependencies": {
+    "qrcode": "^1.5.4"
+  }
+}

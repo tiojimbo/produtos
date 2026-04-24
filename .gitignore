@@ -1,3 +1,6 @@
+# Dependencies
+node_modules/
+
 # OS
 .DS_Store
 Thumbs.db
@@ -11,3 +14,9 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Claude Code (local)
+.claude/
+
+# Vercel
+.vercel/
